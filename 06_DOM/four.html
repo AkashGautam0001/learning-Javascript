@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body style="background-color: #212121; color: white;">
+        <ul class="language">
+            <li>javascript</li>
+        </ul>
+    </body>
+    <script>
+        function addLanguage(langName) {
+            const li = document.createElement('li');
+            li.innerHTML = `${langName}`; //innerHTML traverse the entrire DOM tree. it is not optimise
+            document.querySelector('.language').appendChild(li);
+        }
+        addLanguage("Python");
+        addLanguage("Typescript");
+
+        function addOptimise(langName) {
+            const li = document.createElement('li');
+            li.appendChild(document.createTextNode(langName));
+            document.querySelector('.language').appendChild(li);
+        }
+
+        addOptimise("java");
+        addOptimise("golang")
+
+        //Edit
+        const secondLang = document.querySelector("li:nth-child(2)");
+        // secondLang.innerHTML = "Mojo"; not optimise
+        const newli = document.createElement('li');
+        newli.textContent = "Mojo";
+        secondLang.replaceWith(newli);
+
+        //edit
+        const firstLang = document.querySelector("li:first-child");
+        firstLang.outerHTML = '<li>TypeScript</li>';
+
+        //remove
+        const lastlang = document.querySelector('li:last-child');
+        lastlang.remove();
+
+    </script>
+
+</html>

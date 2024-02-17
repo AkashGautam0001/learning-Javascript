@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="box">
+        </div>
+    </body>
+    <script>
+        const requestURL = 'https://api.github.com/users/hiteshchoudhary';
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', requestURL);
+        xhr.onreadystatechange = function () {
+            console.log(xhr.readyState);
+            if (xhr.readyState === 4) {
+                const data = JSON.parse(this.responseText);  // should be parse in JSON format because response come in string format
+                const follower = data.followers;
+                const image = data.avatar_url;
+                console.log(image);
+                const card = document.querySelector('.box');
+                card.innerHTML = `<img src="${image}" alt="image is not showing"></img> Follower is ${follower}`;
+            }
+        }
+        xhr.send();
+    </script>
+
+</html>
